@@ -75,8 +75,6 @@
     <Build Include="shaman\Tables\SimRefLookup.sql" />
     <Build Include="shaman\Tables\EnchantSet.sql" />
     <Build Include="shaman\Tables\ItemData.sql" />
-    <Build Include="dbo\Stored Procedures\ParseItemData.sql" />
-    <Build Include="dbo\Stored Procedures\GetDataUntilColon.sql" />
     <Build Include="Security\shaman.sql" />
   </ItemGroup>
   <ItemGroup>
@@ -85,9 +83,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="getSimcString.cs" />
+    <None Include="Theorycrafting.publish.xml" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Theorycrafting.publish.xml" />
+    <Compile Include="getSimcString.cs" />
+    <Compile Include="IItemBuilder.cs" />
   </ItemGroup>
 </Project>
