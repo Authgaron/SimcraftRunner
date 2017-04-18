@@ -11,7 +11,7 @@ public partial class UserDefinedFunctions
     [Microsoft.SqlServer.Server.SqlFunction]
     public static SqlString getSimcString(SqlString link, SqlString slot)
     {
-        string trimmedLink = link.Value.Replace("\\124", "|").Split('|')[1].Split(':')[1];
+        string trimmedLink = link.Value.Replace("\\124", "|").Split('|')[2];
 
         Item item = ItemFactory.getItem(slot.ToString(), trimmedLink);
 

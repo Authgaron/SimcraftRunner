@@ -4,7 +4,6 @@ using System.Text;
 
 namespace Theorycrafting
 {
-
     public abstract class Item
     {
         public string slot { get; internal set; }
@@ -31,12 +30,12 @@ namespace Theorycrafting
             //main_hand=,id=128935,bonus_id=744,gem_id=142518/140832/140842,relic_id=3507:1497/3516:1487:1813/3514:1477:3336  
             //off_hand=,id=128936
             string itemId = "id=" + linkItems[1];
-            string offhandItem = "\r\noffhand,id=" + (int.Parse(linkItems[1]) + 1).ToString();
+            string offhandItem = "offhand,id=" + (int.Parse(linkItems[1]) + 1).ToString();
             int bonusCount = int.Parse(linkItems[13]);
             string bonusIds = "bonus_id=" + string.Join("/", linkItems.GetRange(14, bonusCount));
-            int relicStart = 14 + bonusCount + 1;
+            int relicStart = 14 + bonusCount + 2;
 
-            string relicIds = "" + string.Join("/", linkItems.GetRange(4, 3));
+            string relicIds = "gem_id=" + string.Join("/", linkItems.GetRange(3, 3));
             string relicBonuses = getRelicBonuses(linkItems.GetRange(relicStart, linkItems.Count - relicStart));
 
             return string.Join(",", new List<string>()
@@ -46,11 +45,14 @@ namespace Theorycrafting
                 bonusIds,
                 relicIds,
                 relicBonuses
-            }) + offhandItem;
+            }) + "\r\n" + offhandItem;
         }
 
         private string getRelicBonuses(List<string> relicBonusSegments)
         //gem_id=142518/140832/140842,relic_id=3507:1497/3516:1487:1813/3514:1477:3336  
+
+        //Hitem:128935::140841:140831:137493::::110:262:16777472:9:4:744:1527:1531:1525:678:1:3:3516:1487:3528:3:3573:1502:3337:3:3416:1537:3528
+        //
         {
             string relicBonuses = "relic_id=";
             int offset = 0;
@@ -78,7 +80,7 @@ namespace Theorycrafting
             //back=,id=140910,bonus_id=3516/1492/3336,enchant=190879
 
             string itemId = "id=" + linkItems[1];
-
+            
             int bonusCount = int.Parse(linkItems[13]);
             string bonusIds = "bonus_id=" + string.Join("/", linkItems.GetRange(14, bonusCount));
 
